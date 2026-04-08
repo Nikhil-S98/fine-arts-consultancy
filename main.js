@@ -1,28 +1,59 @@
-(function () {
-  var panels = document.querySelectorAll(".panel");
-  var reset = document.querySelector(".reset");
+import gsap from "gsap";
 
-  function syncReset() {
-    if (!reset) return;
-    var open = Array.prototype.some.call(panels, function (el) {
-      return el.matches(":target");
-    });
-    reset.hidden = !open;
+import.meta._gsap = gsap;
+
+function syncNavActive() {
+  var hash = window.location.hash || "";
+  document.querySelectorAll(".site-nav__link").forEach(function (link) {
+    var href = link.getAttribute("href") || "";
+    link.classList.toggle("site-nav__link--active", href === hash);
+  });
+}
+
+(function () {
+  var links = document.querySelectorAll(".services-list__link");
+  var paras = document.querySelectorAll(".services-copy__p");
+  if (!links.length || !paras.length) {
+    window.addEventListener("hashchange", syncNavActive);
+    syncNavActive();
+    return;
   }
 
-  syncReset();
-  window.addEventListener("hashchange", syncReset);
-
-  reset &&
-    reset.addEventListener("click", function (e) {
-      e.preventDefault();
-      if (history.replaceState) {
-        history.replaceState(null, "", window.location.pathname + window.location.search);
-      } else {
-        window.location.hash = "";
-      }
-      syncReset();
-      var content = document.getElementById("content");
-      if (content) content.focus({ preventScroll: true });
+  function resetPanels() {
+    paras.forEach(function (p) {
+      p.classList.add("services-copy__p--hidden");
     });
+    links.forEach(function (a) {
+      a.classList.remove("services-list__link--active");
+    });
+  }
+
+  function showPanel(id) {
+    paras.forEach(function (p) {
+      p.classList.toggle("services-copy__p--hidden", p.id !== id);
+    });
+    links.forEach(function (a) {
+      var hid = (a.getAttribute("href") || "").slice(1);
+      a.classList.toggle("services-list__link--active", hid === id);
+    });
+  }
+
+  links.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      var id = link.getAttribute("href");
+      if (!id || id.charAt(0) !== "#") return;
+      showPanel(id.slice(1));
+    });
+  });
+
+  window.addEventListener("hashchange", function () {
+    syncNavActive();
+    if (window.location.hash === "#services") {
+      resetPanels();
+    }
+  });
+
+  resetPanels();
+  syncNavActive();
 })();
