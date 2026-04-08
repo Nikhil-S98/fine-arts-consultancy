@@ -1,0 +1,190 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-text: #000;
+  --color-active: rgb(0, 0, 1);
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: #fff;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  color: var(--color-text);
+  border: 1px solid var(--color-text);
+  z-index: 1;
+}
+
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.site-header {
+  text-align: center;
+  padding: clamp(2rem, 10vh, 5rem) 1.5rem 0;
+}
+
+.site-header__heart {
+  margin: 0;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.site-header__title {
+  margin: 0.85rem 0 0;
+  font-size: clamp(0.85rem, 2.2vw, 1rem);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+#content {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: clamp(1.75rem, 5vh, 2.75rem) 1.5rem 3rem;
+}
+
+.site-nav__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.site-nav__link {
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.site-nav__link:hover {
+  border-bottom-color: var(--color-text);
+}
+
+.site-nav__link:focus-visible {
+  outline: 1px solid var(--color-text);
+  outline-offset: 3px;
+}
+
+body:has(#about:target) .site-nav__link[href="#about"],
+body:has(#services:target) .site-nav__link[href="#services"],
+body:has(#contact:target) .site-nav__link[href="#contact"] {
+  color: var(--color-active);
+  border-bottom-color: var(--color-active);
+}
+
+.panels {
+  margin-top: clamp(2rem, 6vh, 3.5rem);
+  min-height: 6rem;
+}
+
+.panel {
+  display: none;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--color-text);
+  animation: fade-in 0.2s ease;
+}
+
+.panel:target {
+  display: block;
+}
+
+.panel p {
+  margin: 0.75rem 0 0;
+  max-width: 36rem;
+}
+
+.panel__email {
+  margin-top: 1rem;
+}
+
+.panel__email a {
+  color: var(--color-active);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.panel__email a:hover {
+  border-bottom-color: var(--color-active);
+}
+
+.panel__email a:focus-visible {
+  outline: 1px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.reset-row {
+  margin: 1.25rem 0 0;
+  text-align: center;
+}
+
+.reset {
+  font-size: 0.85rem;
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-text);
+}
+
+.reset:hover {
+  border-bottom-color: transparent;
+}
+
+.reset:focus-visible {
+  outline: 1px solid var(--color-text);
+  outline-offset: 3px;
+}
