@@ -4,6 +4,9 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: #ffffff;
+
 body {
   --site-nav-width: 90%;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Light",
@@ -30,7 +33,6 @@ strong {
   font-weight: 300;
 }
 
-.site-header__heart,
 .site-header__title {
   margin: 0;
   padding-top: 1.5rem;
@@ -137,6 +139,11 @@ strong {
   line-height: 1.45;
 }
 
+.about__word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
 .contact__email:link,
 .contact__email:visited {
   color: inherit;
@@ -208,6 +215,8 @@ strong {
   align-self: center;
   background: currentColor;
   opacity: 0.85;
+  transform-origin: top;
+  will-change: transform;
 }
 
 .services-right {
