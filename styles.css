@@ -6,6 +6,7 @@
 
 html {
   background-color: #ffffff;
+}
 
 body {
   --site-nav-width: 90%;
@@ -301,7 +302,110 @@ strong {
   text-align: right;
 }
 
-@media (max-width: 36rem) {
+@media (max-width: 48rem) {
+  body {
+    --site-nav-width: 100%;
+    max-width: 100%;
+    padding: 1.25rem 1.25rem 0;
+  }
+
+  .site-header__title {
+    padding-top: 1.25rem;
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+
+  .site-nav {
+    font-size: 1.1rem;
+    width: 100%;
+    margin-inline: 0;
+  }
+
+  .site-nav__list {
+    width: 100%;
+    padding: 1.5rem 0 2rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .site-view:target {
+    min-height: auto;
+    padding-block: 1.5rem;
+  }
+
+  .site-view__frame--about,
+  .services-copy {
+    max-width: 28rem;
+  }
+
+  .about__copy,
+  .site-view__frame--contact {
+    font-size: 1.1rem;
+  }
+
+  .site-view--services:target {
+    --services-band: auto;
+    min-height: auto;
+  }
+
+  .services-layout {
+    width: 100%;
+    margin-inline: 0;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding-block: 1rem;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .services-left {
+    padding-right: 0;
+  }
+
+  .services-list {
+    padding-left: 0;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .services-list__item {
+    font-size: 1.05rem;
+  }
+
+  .services-rule {
+    width: 100%;
+    height: 1px;
+    transform: none;
+  }
+
+  .services-right {
+    align-self: auto;
+    overflow: visible;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .services-copy {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .site-footer {
+    padding-top: 1rem;
+    padding-bottom: 1.25rem;
+    font-size: 0.5rem;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+  }
+
   .site-footer__inner {
     flex-direction: column;
     align-items: stretch;
