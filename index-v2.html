@@ -3,61 +3,73 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fine Arts Consulting</title>
+    <title>Index Fine Art Consulting</title>
     <link rel="stylesheet" href="/styles-v2.css" />
   </head>
   <body>
     <div class="page">
 
       <header class="header">
-        <h1 class="logo">FINE ARTS CONSULTING</h1>
-        <p class="tagline">
-          combined 20+ years in the art world<br>
-          working for galleries, artists, and museums.
-        </p>
+        <h1 class="logo"><span class="logo-index">INDEX</span>
+        <span class="logo-sub">FINE ART CONSULTING</span></h1>
         <nav class="nav" aria-label="Primary">
           <a class="nav-link" href="#services">services</a>
           <span class="nav-sep">/</span>
-          <a class="nav-link" href="mailto:about@example.com">contact</a>
+          <a class="nav-link" href="#about">about</a>
+          <span class="nav-sep">/</span>
+          <a class="nav-link" href="#contact">contact</a>
         </nav>
       </header>
 
       <div class="hero">
-        <img id="hero-img" src="" alt="Fine Arts Consulting" />
+        <img id="hero-img" src="" alt="Index Fine Art Consulting" />
       </div>
 
-      <section id="services" class="services">
-        <p class="services-label">Services:</p>
-        <div class="services-grid">
-          <div class="services-col">
-            <p>Archival Management</p>
-            <p>Condition Documentation</p>
-            <p>Provenance Research</p>
-            <p>Storage Standards</p>
-            <p>Collection Records</p>
+      <div class="content">
+
+        <section class="view" id="services">
+          <div class="services-layout">
+            <ul class="services-menu">
+              <li><button class="services-btn" data-panel="archival">archival management</button></li>
+              <li><button class="services-btn" data-panel="logistics">shipping &amp; logistics</button></li>
+              <li><button class="services-btn" data-panel="other">etc.</button></li>
+            </ul>
+            <div class="services-rule" aria-hidden="true"></div>
+            <div class="services-detail">
+              <p class="services-panel" id="panel-archival">
+                Archival management covers building and maintaining digital databases for
+                collections. We catalogue works, digitize records, and set up systems
+                that keep everything searchable, up to date, and accessible long-term.
+              </p>
+              <p class="services-panel" id="panel-logistics">
+                Shipping and logistics include crating and packing, courier coordination,
+                customs and insurance paperwork, and careful handoffs between venues,
+                studios, and collectors.
+              </p>
+              <p class="services-panel" id="panel-other">
+                If you&apos;ve got any other questions, contact us at
+                <a class="services-email" href="mailto:about@example.com">about@example.com</a>.
+              </p>
+            </div>
           </div>
-          <div class="services-col">
-            <p>Shipping &amp; Logistics</p>
-            <p>Crating &amp; Packing</p>
-            <p>Courier Coordination</p>
-            <p>Customs Documentation</p>
-            <p>Insurance Paperwork</p>
-          </div>
-          <div class="services-col">
-            <p>Venue Coordination</p>
-            <p>Studio Liaison</p>
-            <p>Collector Relations</p>
-          </div>
-        </div>
-      </section>
+        </section>
+
+        <section class="view about-view" id="about">
+          <p class="about-copy">combined 20+ years in the art world working for galleries, artists, and museums.</p>
+        </section>
+
+        <section class="view contact-view" id="contact">
+          <a class="contact-email" href="mailto:about@example.com">about@example.com</a>
+        </section>
+
+      </div>
+
+      <footer class="footer">
+        <span>&copy; 2026 index fine art consulting</span>
+        <span>designed by nikhil shetty &nbsp;·&nbsp; <a class="version-link" href="./index.html">v1</a></span>
+      </footer>
 
     </div>
-
-    <footer class="footer">
-      <span>about@example.com</span>
-      <span>&copy; 2026 Fine Arts Consulting</span>
-      <span>designed by nikhil shetty</span>
-    </footer>
 
     <script type="module" src="/main-v2.js"></script>
   </body>
