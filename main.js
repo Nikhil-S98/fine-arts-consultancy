@@ -82,12 +82,27 @@ function setNavActive(name) {
 
 setNavActive("services");
 
+// ── Scroll hint ──────────────────────────────────
+const servicesEl = document.getElementById("services");
+const scrollHint = document.querySelector(".scroll-hint");
+
+function updateScrollHint() {
+  if (!scrollHint || !servicesEl) return;
+  const overflows = servicesEl.scrollHeight > servicesEl.clientHeight + 2;
+  const atBottom = servicesEl.scrollTop + servicesEl.clientHeight >= servicesEl.scrollHeight - 4;
+  scrollHint.style.opacity = (overflows && !atBottom) ? "1" : "0";
+}
+
+servicesEl.addEventListener("scroll", updateScrollHint);
+window.addEventListener("resize", updateScrollHint);
+
 // ── Services animation ───────────────────────────
 function animateServices() {
   const els = document.querySelectorAll("#services .services-intro, #services .services-list li");
   gsap.killTweensOf(els);
   gsap.set(els, { opacity: 0 });
   gsap.to(els, { opacity: 1, duration: 0.25, ease: "power1.out", stagger: 0.05 });
+  gsap.delayedCall(0.6, updateScrollHint);
 }
 
 // ── About word animation ─────────────────────────
@@ -172,4 +187,5 @@ if (initHash && views[initHash] && initHash !== "services") {
   if (initHash === "about") buildAboutWords();
 } else {
   animateServices();
+  updateScrollHint();
 }

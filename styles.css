@@ -98,14 +98,26 @@ html, body {
 
 .content {
   flex: 1;
+  min-height: 0;
   display: grid;
-  align-content: start;
   padding-top: 16px;
-  overflow-y: auto;
 }
 
 .view {
   grid-area: 1 / 1;
+  overflow-y: hidden;
+}
+
+#services {
+  overflow-y: auto;
+}
+
+#about {
+  overflow-y: auto;
+}
+
+#contact {
+  overflow-y: hidden;
 }
 
 /* ── Section label (wayfinding) ─────────────────── */
@@ -133,6 +145,19 @@ html, body {
 
 .services-list li::before {
   content: "— ";
+}
+
+.scroll-hint {
+  position: sticky;
+  bottom: 0;
+  margin: 8px 0 0;
+  padding-bottom: 2px;
+  font-size: 11px;
+  color: #999;
+  background: #fafafa;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 /* ── About ──────────────────────────────────────── */
