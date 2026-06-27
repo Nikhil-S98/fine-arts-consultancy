@@ -82,108 +82,53 @@ function setNavActive(name) {
 
 setNavActive("services");
 
-// ── Services panel ───────────────────────────────
-const serviceBtns = document.querySelectorAll(".services-btn");
-const servicePanels = document.querySelectorAll(".services-panel");
-
-function resetServicePanels() {
-  servicePanels.forEach((p) => p.classList.remove("is-visible"));
-  serviceBtns.forEach((b) => b.classList.remove("services-btn--active"));
+// ── Services animation ───────────────────────────
+function animateServices() {
+  const els = document.querySelectorAll("#services .services-intro, #services .services-list li");
+  gsap.killTweensOf(els);
+  gsap.set(els, { opacity: 0 });
+  gsap.to(els, { opacity: 1, duration: 0.25, ease: "power1.out", stagger: 0.05 });
 }
 
-function buildPanelWords(panel) {
-  if (!panel || panel.dataset.built) return;
-  const items = [];
-  panel.childNodes.forEach((node) => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      node.textContent.split(/\s+/).filter(Boolean).forEach((w) => items.push({ type: "text", text: w }));
-    } else if (node.nodeType === Node.ELEMENT_NODE) {
-      items.push({ type: "el", node: node.cloneNode(true) });
-    }
+// ── About word animation ─────────────────────────
+function buildAboutWords() {
+  document.querySelectorAll("#about .about-copy").forEach((p) => {
+    if (p.dataset.built) return;
+    const items = [];
+    p.childNodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        node.textContent.split(/\s+/).filter(Boolean).forEach((w) => items.push({ type: "text", text: w }));
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        items.push({ type: "el", node: node.cloneNode(true) });
+      }
+    });
+    p.textContent = "";
+    items.forEach((item, i) => {
+      const span = document.createElement("span");
+      span.className = "about-word";
+      if (item.type === "text") span.textContent = item.text;
+      else span.appendChild(item.node);
+      p.appendChild(span);
+      if (i < items.length - 1) p.appendChild(document.createTextNode(" "));
+    });
+    p.dataset.built = "true";
   });
-  panel.textContent = "";
-  items.forEach((item, i) => {
-    const span = document.createElement("span");
-    span.className = "panel-word";
-    if (item.type === "text") span.textContent = item.text;
-    else span.appendChild(item.node);
-    panel.appendChild(span);
-    if (i < items.length - 1) panel.appendChild(document.createTextNode(" "));
-  });
-  panel.dataset.built = "true";
 }
 
-function animatePanelWords(panel) {
-  buildPanelWords(panel);
-  const words = panel.querySelectorAll(".panel-word");
+function animateAbout() {
+  buildAboutWords();
+  const words = document.querySelectorAll("#about .about-word");
   gsap.killTweensOf(words);
   gsap.set(words, { opacity: 0 });
   gsap.to(words, { opacity: 1, duration: 0.25, ease: "power1.out", stagger: 0.035 });
 }
 
-function showServicePanel(panelId) {
-  servicePanels.forEach((p) => {
-    if (p.id === panelId) {
-      p.classList.add("is-visible");
-      animatePanelWords(p);
-    } else {
-      p.classList.remove("is-visible");
-    }
-  });
-  serviceBtns.forEach((b) => {
-    b.classList.toggle("services-btn--active", `panel-${b.dataset.panel}` === panelId);
-  });
-}
-
-function animateServicesRule() {
-  const rule = document.querySelector("#services .services-rule");
-  if (!rule) return;
-  gsap.killTweensOf(rule);
-  gsap.set(rule, { scaleY: 0 });
-  gsap.to(rule, { scaleY: 1, duration: 0.5, ease: "power2.out" });
-}
-
-serviceBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    showServicePanel(`panel-${btn.dataset.panel}`);
-  });
-});
-
-// ── About word animation ─────────────────────────
-function buildWords() {
-  const p = document.querySelector("#about .about-copy");
-  if (!p || p.dataset.built) return;
-  const text = (p.textContent || "").replace(/\s+/g, " ").trim();
-  p.textContent = "";
-  text.split(" ").forEach((word, i, arr) => {
-    const span = document.createElement("span");
-    span.className = "about-word";
-    span.textContent = word;
-    p.appendChild(span);
-    if (i < arr.length - 1) p.appendChild(document.createTextNode(" "));
-  });
-  p.dataset.built = "true";
-}
-
-function animateAbout() {
-  buildWords();
-  const words = document.querySelectorAll("#about .about-word");
-  gsap.killTweensOf(words);
-  gsap.set(words, { opacity: 0 });
-  gsap.to(words, {
-    opacity: 1,
-    duration: 0.25,
-    ease: "power1.out",
-    stagger: 0.035,
-  });
-}
-
 // ── Contact animation ────────────────────────────
 function animateContact() {
-  const email = document.querySelector("#contact .contact-email");
-  if (!email) return;
-  gsap.killTweensOf(email);
-  gsap.fromTo(email, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.out" });
+  const els = document.querySelectorAll("#contact .contact-intro, #contact .contact-email");
+  gsap.killTweensOf(els);
+  gsap.set(els, { opacity: 0 });
+  gsap.to(els, { opacity: 1, duration: 0.25, ease: "power1.out", stagger: 0.1 });
 }
 
 // ── Switch view ──────────────────────────────────
@@ -200,10 +145,7 @@ function switchTo(name) {
 
   if (name === "about") gsap.delayedCall(0.15, animateAbout);
   if (name === "contact") gsap.delayedCall(0.15, animateContact);
-  if (name === "services") {
-    resetServicePanels();
-    gsap.delayedCall(0.15, animateServicesRule);
-  }
+  if (name === "services") gsap.delayedCall(0.15, animateServices);
 
   active = name;
   setNavActive(name);
@@ -227,8 +169,7 @@ if (initHash && views[initHash] && initHash !== "services") {
   gsap.set(views[initHash], { opacity: 1, pointerEvents: "auto" });
   active = initHash;
   setNavActive(initHash);
-  if (initHash === "about") buildWords();
+  if (initHash === "about") buildAboutWords();
 } else {
-  resetServicePanels();
-  animateServicesRule();
+  animateServices();
 }
