@@ -7,88 +7,72 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <h1 class="site-header__title"> INDEX FINE ART CONSULTING</h1>
-    </header>
+    <div class="page">
 
-    <nav class="site-nav" aria-label="Primary">
-      <ul class="site-nav__list">
-        <li class="site-nav__item">
-          <a class="site-nav__link" href="#about">about</a>
-        </li>
-        <li class="site-nav__item">
-          <a class="site-nav__link" href="#services">services</a>
-        </li>
-        <li class="site-nav__item">
-          <a class="site-nav__link" href="#contact">contact</a>
-        </li>
-      </ul>
-    </nav>
+      <header class="header">
+        <h1 class="logo"><span class="logo-index">INDEX</span>
+        <span class="logo-sub">FINE ART CONSULTING</span></h1>
+        <nav class="nav" aria-label="Primary">
+          <a class="nav-link" href="#services">services</a>
+          <span class="nav-sep">//</span>
+          <a class="nav-link" href="#about">about</a>
+          <span class="nav-sep">//</span>
+          <a class="nav-link" href="#contact">contact</a>
+        </nav>
+      </header>
 
-    <section id="about" class="site-view site-view--about" aria-labelledby="about-heading">
-      <div class="site-view__frame site-view__frame--about">
-        <h2 id="about-heading" class="visually-hidden">About</h2>
-        <p class="about__copy">
-          combined 20+ years in the art world working for galleries, artists, and museums.
-        </p>
+      <div class="hero">
+        <img id="hero-img" src="" alt="Index Fine Art Consulting" />
       </div>
-    </section>
 
-    <section id="services" class="site-view site-view--services" aria-labelledby="services-heading">
-      <h2 id="services-heading" class="visually-hidden">Services</h2>
-      <div class="services-layout">
-        <div class="services-left">
-          <ul class="services-list">
-            <li class="services-list__item">
-              <a class="services-list__link" href="#services-detail-archival">archival management</a>
-            </li>
-            <li class="services-list__item">
-              <a class="services-list__link" href="#services-detail-logistics">shipping &amp; logistics</a>
-            </li>
-            <li class="services-list__item">
-              <a class="services-list__link" href="#services-detail-other">etc.</a>
-            </li>
-          </ul>
-        </div>
-        <div class="services-rule" aria-hidden="true"></div>
-        <div class="services-right">
-          <div class="services-copy">
-            <p id="services-detail-archival" class="services-copy__p services-copy__p--hidden">
-              Archival support covers condition documentation, provenance research, storage
-              standards, and long-term collection records—so works stay traceable,
-              insurable, and exhibition-ready.
-            </p>
-            <p id="services-detail-logistics" class="services-copy__p services-copy__p--hidden">
-              Shipping and logistics include crating and packing, courier coordination,
-              customs and insurance paperwork, and careful handoffs between venues,
-              studios, and collectors.
-            </p>
-            <p id="services-detail-other" class="services-copy__p services-copy__p--hidden">
-              If you&apos;ve got any other questions, contact us at
-              <a class="services-email-link" href="mailto:about@example.com">about@example.com</a>.
-            </p>
+      <div class="content">
+
+        <section class="view" id="services">
+          <p class="section-label">services</p>
+          <div class="services-layout">
+            <ul class="services-menu">
+              <li><button class="services-btn" data-panel="archival">archival management</button></li>
+              <li><button class="services-btn" data-panel="logistics">shipping &amp; logistics</button></li>
+              <li><button class="services-btn" data-panel="other">etc.</button></li>
+            </ul>
+            <div class="services-rule" aria-hidden="true"></div>
+            <div class="services-detail">
+              <p class="services-panel" id="panel-archival">
+                Archival management covers building and maintaining digital databases for
+                collections. We catalogue works, digitize records, and set up systems
+                that keep everything searchable, up to date, and accessible long-term.
+              </p>
+              <p class="services-panel" id="panel-logistics">
+                Shipping and logistics include crating and packing, courier coordination,
+                customs and insurance paperwork, and careful handoffs between venues,
+                studios, and collectors.
+              </p>
+              <p class="services-panel" id="panel-other">
+                If you&apos;ve got any other questions, contact us at
+                <a class="services-email" href="mailto:about@example.com">about@example.com</a>.
+              </p>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <section id="contact" class="site-view site-view--contact" aria-labelledby="contact-heading">
-      <h2 id="contact-heading" class="visually-hidden">Contact</h2>
-      <div class="site-view__frame site-view__frame--contact">
-        <a class="contact__email" href="mailto:about@example.com">about@example.com</a>
-      </div>
-    </section>
+        <section class="view about-view" id="about">
+          <p class="section-label">about</p>
+          <p class="about-copy">combined 20+ years in the art world working for galleries, artists, and museums.</p>
+        </section>
 
-    <footer class="site-footer">
-      <div class="site-footer__inner">
-        <p class="site-footer__copy site-footer__copy--left">
-          &copy; 2026 index fine art consulting
-        </p>
-        <p class="site-footer__copy site-footer__copy--right">
-          website designed and developed by nikhil shetty &nbsp;·&nbsp; <a class="version-link" href="./index-v2.html">v2</a>
-        </p>
+        <section class="view contact-view" id="contact">
+          <p class="section-label">contact</p>
+          <a class="contact-email" href="mailto:about@example.com">about@example.com</a>
+        </section>
+
       </div>
-    </footer>
+
+      <footer class="footer">
+        <span>&copy; 2026 index fine art consulting</span>
+        <span>designed by nikhil shetty</span>
+      </footer>
+
+    </div>
 
     <script type="module" src="/main.js"></script>
   </body>
